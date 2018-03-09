@@ -57,7 +57,7 @@ Insert the <strong>Name</strong> of the user and click remove to remove them fro
 </html>
 <?php
 //instructions for user lookup
-if ($_POST['lookupusername'] && isset($_POST['lookup'])){
+if (isset($_POST['lookup'])){
 	$lookup = "SELECT * FROM test_table WHERE name LIKE :name";
 	$lookupQuery = $pdo->prepare($lookup);
 	$lookupQueryValues = array(
@@ -79,7 +79,7 @@ else {
 
 //instructions for user add
 //$password = "bread";
-if ($_POST['arusername'] && $_POST['age'] && $_POST['email'] && isset($_POST['add'])){
+if (!empty($_POST['arusername']) && !empty($_POST['age']) && !empty($_POST['email']) && isset($_POST['add'])){
       $add = "INSERT INTO test_table (id, name, age, email) VALUES (NULL, :name, :age, :email)";
     $addQuery = $pdo->prepare($add);
     $addQueryValues = array(
@@ -92,21 +92,22 @@ if ($_POST['arusername'] && $_POST['age'] && $_POST['email'] && isset($_POST['ad
 }
 
 //instructions for user remove
-else if ($_POST['arusername'] && isset($_POST['remove'])){
-	$remove = "DELETE FROM test_table WHERE name LIKE :name";
+else if ((!empty($_POST['arusername']) || !empty($_POST['email'])) && isset($_POST['remove'])){
+	$remove = "DELETE FROM test_table WHERE name LIKE :name OR email LIKE :email";
 	$removeQuery = $pdo->prepare($remove);
 	$removeQueryValues = array(
-	':name'=>$_POST['arusername']
+	':name'=>$_POST['arusername'],
+	':email'=>$_POST['email']
 	);
 	$removeQuery->execute($removeQueryValues);
 	echo strToUpper($_POST['arusername']) . " was removed from the database!";
-  }
+}
 
-else if ((!$_POST['arusername'] || !$_POST['age'] || !$_POST['email']) && isset($_POST['add'])){
+else if ((empty($_POST['arusername']) || empty($_POST['age']) || empty($_POST['email'])) && isset($_POST['add'])){
 echo "Please fill out all of the fields to add a user";
 }
 
-else if (!$_POST['arusername'] && isset($_POST['remove'])){
+else if ((empty($_POST['arusername']) && empty($_POST['email'])) && isset($_POST['remove'])){
 echo "Please fill out the required field to remove a user";
 }
 ?>

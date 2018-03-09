@@ -100,7 +100,7 @@ else if ((!empty($_POST['arusername']) || !empty($_POST['email'])) && isset($_PO
 	':email'=>$_POST['email']
 	);
 	$removeQuery->execute($removeQueryValues);
-	echo strToUpper($_POST['arusername']) . " was removed from the database!";
+	echo strToUpper($_POST['arusername']) . ($_POST['email']) . " was removed from the database!";
 }
 
 else if ((empty($_POST['arusername']) || empty($_POST['age']) || empty($_POST['email'])) && isset($_POST['add'])){

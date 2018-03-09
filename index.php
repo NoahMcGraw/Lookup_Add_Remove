@@ -1,32 +1,7 @@
 <?php
 	echo "<strong>Check out my SQL Database!</strong><br>";
-    $host = "localhost";
-    $dbname = "test_db1";
-    $user = "secure_user";
-    $password = "462nTxXb555MVnjD";
-    $dsn = "mysql:host=". $host .";dbname=". $dbname;
-	$pdo = new PDO($dsn, $user, $password);
-    class Person {
-
-		public $isValid = true;
-		public $name;
-		public $age;
-		public $email;
-
-		public function __construct($name, $age, $email){
-
-			$this->name = $name;
-			$this->age = $age;
-			$this->email = $email;
-		}
-
-		public function whoami() {
-
-			echo "I am  " . $this->name . ", I am " . $this->age;
-			echo " years old, and my email address is " . $this->email ;
-		}
-	}
-
+    	require_once __DIR__ . "/pdoSetup.php";
+	require_once __DIR__ . "/personClass.php";
 ?>
 <html>
 	<h1>Lookup a User!</h1>

@@ -102,11 +102,11 @@ else if ($_POST['arusername'] && isset($_POST['remove'])){
 	echo strToUpper($_POST['arusername']) . " was removed from the database!";
   }
 
-else if (!$_POST['arusername'] || !$_POST['age'] || !$_POST['email'] && isset($_POST['add']) && !isset($_POST['lookup'])){
+else if ((!$_POST['arusername'] || !$_POST['age'] || !$_POST['email']) && isset($_POST['add'])){
 echo "Please fill out all of the fields to add a user";
 }
 
-else if (!$_POST['arusername'] && isset($_POST['remove']) && !isset($_POST['lookup'])){
+else if (!$_POST['arusername'] && isset($_POST['remove'])){
 echo "Please fill out the required field to remove a user";
 }
 ?>

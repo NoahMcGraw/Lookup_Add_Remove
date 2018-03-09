@@ -32,41 +32,6 @@
 		echo " years old, and my email address is " . $this->email ;
 		}
 	    }
-            # PDO Query
-
-            //$stmt = $pdo->query("SELECT * FROM test_table");
-
-            //while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            //    echo $row['name']. '<br>';
-            //};
-            //$selectTable = "
-
-//            $selectTable = "SELECT * FROM test_table";
-
-//          $selectTableQuery = $pdo->prepare($selectTable);
-
-//            $selectTableQuery->execute();
-
-//          $tableResult = $selectTableQuery->fetchAll();
-
-           // foreach ($tableResult as $eachRow){
-              //  echo 'Name: '.$eachRow['name']. '<br>';
-              // echo 'Age: '.$eachRow['age']. '<br>';
-             //   echo 'Email: '.$eachRow['email']. '<br><br>';
-           // };
-
-//		$personArr = [];
-//	 foreach ($tableResult as $each){
-//		$human = new Person($each['name'], $each['age'], $each['email']);
-//		echo $human->whoami() . "<br>";
-//		array_push($personArr, $human);
-//		//echo $personArr;
-//		unset($human);
-//		}
-
-//	for ($i = 0; $i < count($personArr); $i++){
-//		echo "<br>" .  $personArr[$i]->name;
-//		};
 
 ?>
 <html>
@@ -123,9 +88,9 @@ if ($_POST['arusername'] && $_POST['age'] && $_POST['email'] && isset($_POST['ad
 	':email'=>$_POST['email']
 	);
         $addQuery->execute($addQueryValues);
-//        $addResult = $addQuery->fetchAll();
 	echo $_POST['arusername'] . " was added to the database!";
 }
+
 //instructions for user remove
 else if ($_POST['arusername'] && isset($_POST['remove'])){
 	$remove = "DELETE FROM test_table WHERE name LIKE :name";

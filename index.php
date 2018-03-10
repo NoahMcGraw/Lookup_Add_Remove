@@ -1,30 +1,34 @@
-<?php
-	echo "<strong>Check out my SQL Database!</strong><br>";
-    	require_once __DIR__ . "/pdoSetup.php";
-	require_once __DIR__ . "/personClass.php";
-?>
 <html>
-	<h1>Lookup a User!</h1>
-	<form action="" method="POST">
-	    Name:  <input type="text" name="lookupusername" /><br/>
-	    <input type="submit" name="lookup" value="Lookup" />
-	</form>
-	<h1>Add/Remove a User!</h1>
-	<p>Please fill out the <strong>Name, Age, and Email</strong> of the user and click <strong>ADD</strong> to add them to the database.
-	<br>
-	<strong>OR</strong>
-	<br>
-	Insert the <strong>Name</strong> of the user and click remove to remove them from the database.<p>
-	<form action="" method="POST">
-	    Name:  <input type="text" name="arusername" /><br/>
-	    Age:   <input type="int" name="age" /><br/>
-	    Email: <input type="text" name="email" /><br/>
-	    Password: <input type="text" name="password" /><br/>
-	    <input type="submit" name="add" value="Add" />
-	    <input type="submit" name="remove" value="Remove" />
-	</form>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="/jQuery.js"></script>
+	</head>
+	<body>
+		<h1>Lookup a User!</h1>
+		<form action="" method="POST">
+	    	Name:  <input type="text" name="lookupusername" /><br/>
+	    	<input type="submit" name="lookup" value="Lookup" />
+		</form>
+		<h1>Add/Remove a User!</h1>
+		<p>Please fill out the <strong>Name, Age, and Email</strong> of the user and click <strong>ADD</strong> to add them to the database.
+		<br>
+		<strong>OR</strong>
+		<br>
+		Insert the <strong>Name</strong> of the user and click remove to remove them from the database.<p>
+		<form action="" method="POST">
+	    	Name:  <input type="text" name="arusername" /><br/>
+	    	Age:   <input type="int" name="age" /><br/>
+	    	Email: <input type="text" name="email" /><br/>
+	    	Password: <input type="text" name="password" /><br/>
+	    	<input type="submit" name="add" value="Add" />
+	    	<input type="submit" name="remove" value="Remove" />
+		</form>
+		<div class="target"><p>this is not jQuery</p></div>
+	<body>
 </html>
 <?php
+	require_once __DIR__ . "/pdoSetup.php";
+	require_once __DIR__ . "/personClass.php";
 	//instructions for user lookup
 	if (isset($_POST['lookup'])){
 		$lookup = "SELECT * FROM test_table WHERE name LIKE :name";
@@ -73,11 +77,11 @@
 	}
 
 	else if ((empty($_POST['arusername']) || empty($_POST['age']) || empty($_POST['email'])) && isset($_POST['add'])){
-	echo "Please fill out all of the fields to add a user";
+		echo "Please fill out all of the fields to add a user";
 	}
 
 	else if ((empty($_POST['arusername']) && empty($_POST['email'])) && isset($_POST['remove'])){
-	echo "Please fill out the required field to remove a user";
+		echo "Please fill out the required field to remove a user";
 	}
 ?>
 

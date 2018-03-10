@@ -1,14 +1,14 @@
 <html>
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script type="text/javascript" src="/jQuery.js"></script>
+		<script type="text/javascript" src="/indexJs.js"></script>
 	</head>
 	<body>
 		<h1>Lookup a User!</h1>
-		<form action="" method="POST">
-	    	Name:  <input type="text" name="lookupusername" /><br/>
-	    	<input type="submit" name="lookup" value="Lookup" />
-		</form>
+		<!--<form action="" method="POST">-->
+	    	Name:  <input type="text" id="lookupusername" name="lookupusername" /><br/>
+	    	<!--<input type="submit" name="lookup" value="Lookup" />-->
+		<!--</form>-->
 		<h1>Add/Remove a User!</h1>
 		<p>Please fill out the <strong>Name, Age, and Email</strong> of the user and click <strong>ADD</strong> to add them to the database.
 		<br>
@@ -24,36 +24,17 @@
 	    	<input type="submit" name="remove" value="Remove" />
 		</form>
 		<div class="target"><p>this is not jQuery</p></div>
+		<div id="result"><p>this should be your output</p></div>
+		<script type='text/javascript' src='/lookupJs.js'></script>
 	<body>
 </html>
 <?php
 	require_once __DIR__ . "/pdoSetup.php";
 	require_once __DIR__ . "/personClass.php";
 	//instructions for user lookup
-	if (isset($_POST['lookup'])){
-		$lookup = "SELECT * FROM test_table WHERE name LIKE :name";
-		$lookupQuery = $pdo->prepare($lookup);
-		$lookupQueryValues = array(
-		':name'=>'%'.$_POST['lookupusername'].'%'
-		);
-		$lookupQuery->execute($lookupQueryValues);
-		$lookupResult = $lookupQuery->fetchAll();
-		if ($lookupResult){
-			foreach ($lookupResult as $eachResult) {
-			echo "Name: " . $eachResult['name'] . "<br>";
-			echo "Age: " . $eachResult['age'] . "<br>";
-			echo "Email: " . $eachResult['email'] . "<br>";
-			echo
-			"<form method='POST'>
-				<input type='submit' value='Remove User' />
-				<input type='hidden' name='id' value='" . $eachResult['id'] . "' />
-			</form>";
-			}
-		}
-		else {
-			echo "No such Person<br>";
-		}
-	}
+	//if (isset($_POST['lookup'])){
+	//	echo "<script type='text/javascript' src='/lookupJs.js'></script>";
+	//}
 
 	if (isset($_POST['id'])) {
 			$removeInd = "DELETE FROM test_table WHERE id Like :id";

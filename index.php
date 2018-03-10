@@ -43,6 +43,11 @@
 			echo "Name: " . $eachResult['name'] . "<br>";
 			echo "Age: " . $eachResult['age'] . "<br>";
 			echo "Email: " . $eachResult['email'] . "<br>";
+			echo
+			"<form method='POST'>
+				<input type='submit' value='Remove User' />
+				<input type='hidden' name='id' value='" . $eachResult['id'] . "' />
+			</form>";
 			}
 		}
 		else {
@@ -50,11 +55,22 @@
 		}
 	}
 
+	if (isset($_POST['id'])) {
+			$removeInd = "DELETE FROM test_table WHERE id Like :id";
+			$removeIndQuery = $pdo->prepare($removeInd);
+			$removeIndQueryValues = array(
+				':id'=>$_POST['id']
+			);
+			$removeIndQuery->execute($removeIndQueryValues);
+			echo "Deleted";	
+		
+	}
+
 	//instructions for user add
 	//$password = "bread";
 	if (!empty($_POST['arusername']) && !empty($_POST['age']) && !empty($_POST['email']) && isset($_POST['add'])){
 		$add = "INSERT INTO test_table (id, name, age, email) VALUES (NULL, :name, :age, :email)";
-	    $addQuery = $pdo->prepare($add);
+		$addQuery = $pdo->prepare($add);
 	    $addQueryValues = array(
 		':name'=>strToUpper($_POST['arusername']),
 		':age'=>$_POST['age'],

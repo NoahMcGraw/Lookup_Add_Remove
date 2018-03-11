@@ -1,0 +1,25 @@
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <title>Lookup/Add/Remove</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="indexJs.js"></script>
+	</head>
+	<body>
+        <h1>Welcome to Ye'Olde SQL Server</h1>
+        <p>To <strong>LOOKUP</strong> a user, please enter their name in the form</p>
+        <p>To <strong>ADD</strong> a user, please fill out their Name, Age, and Email and click <strong>ADD</strong></p>
+        <p>To <strong>REMOVE</strong> a user, search their name in the form and click the <strong>REMOVE USER</strong>
+        button underneath their name</p>
+	    	Name:  <input type="text" id="arusername" class="lookupusername" name="arusername" /><br/>
+	    	Age:   <input type="int" id="age" name="age" /><br/>
+	    	Email: <input type="text" id="email" name="email" /><br/>
+	    	Password: <input type="text" name="password" /><br/>
+	    	<input type="submit" id="add" name="add" value="Add" />
+	    	<!--<input type="submit" id="remove" name="remove" value="Remove" />-->
+		<div class="target"></div>
+		<div id="result"></div>
+		<script type='text/javascript' src='postRoutes.js'></script>
+	<body>
+</html>
+

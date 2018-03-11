@@ -15,7 +15,7 @@
                 echo "Email: " . $eachResult['email'] . "<br>";
                 echo
                 "<form action='/removeInd.php' method='POST'>
-                    <input type='submit' id='removeIndBtn' name='removeIndBtn' value='" . $eachResult['id'] ."' />
+                    <input type='submit' id='removeIndBtn' name='removeIndBtn' value='Remove User' />
                     <input type='hidden' id='removeIndValue' name='removeIndValue' value='" . $eachResult['id'] . "' />
                     <input type='hidden' id='removeIndName' name='removeIndName' value='" . $eachResult['name'] . "' />
                     <br><br>

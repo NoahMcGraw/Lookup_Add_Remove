@@ -18,14 +18,13 @@
 	        ':email'=>$_POST['email']
 	        );
 	        $addQuery->execute($addQueryValues);
-            echo $_POST['arusername'] . " was added to the database!";
         }
         else {
             foreach($compareResult as $result) {
-                if ($result['name'] == $_POST['arusername']) {
-                    echo $_POST['arusername'] . " already exists in the database!";
+                if ($result['name'] == strtoupper($_POST['arusername'])) {
+                    echo strtoupper($_POST['arusername']) . " already exists in the database!";
                 }
-                else if ($result['email'] == $_POST['email']) {
+                else if (strtoupper($result['email']) == strtoupper($_POST['email'])) {
                     echo $_POST['email'] . " is already registered to another user!";
                 }
                 else {
